@@ -13,7 +13,6 @@ function TopNavigator() {
     <Tab.Navigator
       initialRouteName="Featured"
       screenOptions={{
-        
         tabBarActiveTintColor: AppStyles.colors.btnColor,
         tabBarLabelStyle: { fontSize: 12, color:"#fff" },
         tabBarStyle: { backgroundColor:AppStyles.colors.topBottomColor },

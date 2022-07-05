@@ -4,8 +4,26 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 import AppStyles from '../../../styles/styles';
 import { AntDesign, Zocial, Feather, MaterialCommunityIcons} from '@expo/vector-icons';
 import { TextInput } from 'react-native-gesture-handler';
+import { useState, useEffect } from 'react';
+
+import { auth } from '../../../firebase';
+
 
 const SignInScreen = (navigator) =>{
+
+        const [email, setEmail] = useState('')
+        const [password, setPassword] = useState('')
+    
+        const handleSignIn = ()=>{
+            auth
+            .signInWithEmailAndPassword(email,password)
+            .then(userCredentials =>{
+                const user = userCredentials.user;
+                console.log(user.email)
+            }).then(()=>{navigator.navigation.navigate("main")}).catch(error=>alert("Email or Password Incorrect"))
+        }
+
+
     return(
         <SafeAreaView style={styles.container}>
             <TouchableOpacity style={styles.top} onPress={()=> navigator.navigation.navigate("welcome")}>
@@ -22,7 +40,10 @@ const SignInScreen = (navigator) =>{
                         <TextInput
                             placeholder='e.g emile@gmail.com'
                             placeholderTextColor={AppStyles.colors.lightGreyColor}
-                        style={{left:10}}/>
+                            style={{left:10}}
+                            value={email}
+                            onChangeText={text=> setEmail(text)}
+                            />
                     </View>
 
                     <Text style={{color:AppStyles.colors.lightGreyColor, top:10}}>
@@ -35,7 +56,10 @@ const SignInScreen = (navigator) =>{
                             placeholder='Your password'
                             placeholderTextColor={AppStyles.colors.lightGreyColor}
                             secureTextEntry={true}
-                            style={{left:10}}/>
+                            style={{left:10}}
+                            value={password}
+                            onChangeText={text => setPassword(text)}
+                            />
                     </View>
 
                     <View style={{flexDirection:"row",justifyContent:"flex-end",top:30}}>
@@ -44,7 +68,7 @@ const SignInScreen = (navigator) =>{
                         </TouchableOpacity>
                     </View>
 
-                    <TouchableOpacity style={[styles.signInBtn, {top:40}]} onPress={() => navigator.navigation.navigate("main")}>
+                    <TouchableOpacity style={[styles.signInBtn, {top:40}]} onPress={handleSignIn}>
                         <Text style={styles.getStartedTitle}>Sign In</Text>
                     </TouchableOpacity>
 

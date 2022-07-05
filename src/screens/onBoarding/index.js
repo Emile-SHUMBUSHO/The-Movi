@@ -53,8 +53,8 @@ const OnboardingScreen = (props) =>{
                                 data={slides}
                                 renderItem={RenderItem}
                                 showSkipButton={false}
-                                nextLabel={""}
-                                onDone={onDone}
+                                nextLabel={false}
+                                showDoneButton={false}
                                 dotStyle={{top:-140,left:-122, backgroundColor:AppStyles.colors.btnColor, borderRadius:0, width:20, height:5}}
                                 activeDotStyle={{backgroundColor:"yellow", borderRadius:0, width:30, top:-140,left:-122, height:5}}
                             />
@@ -95,7 +95,8 @@ const styles  = StyleSheet.create({
         margin:10,
       },
       getStartedTitle:{
-
+        fontSize:18,
+        fontWeight:AppStyles.fonts.FONT_THIN,
       }
 })
 

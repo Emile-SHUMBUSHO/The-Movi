@@ -4,7 +4,7 @@ import { AntDesign, Feather } from '@expo/vector-icons';
 import AppStyles from '../../styles/styles';
 import { ScrollView } from 'react-native-gesture-handler';
 const DetailsScreen = ({route, navigation})=>{
-        const {title, backdrop_path} = route.params;
+        const {title, backdrop_path, overview,release_date} = route.params;
     return(
         <SafeAreaView style={{backgroundColor:AppStyles.colors.topBottomColor}}>
             <ScrollView
@@ -21,7 +21,7 @@ const DetailsScreen = ({route, navigation})=>{
                     </TouchableOpacity>
                 </View>
                 <View style={{margin:10}}>
-                    <Text style={{color:"#fff"}}>2020 | 17+ | Action, Drama, & Family</Text>
+                    <Text style={{color:"#fff"}}>{release_date} | 17+ | Action, Drama, & Family</Text>
                 </View>
                 <View style={{margin:10}}>
                     <Text style={{color:"yellow"}}>
@@ -44,7 +44,7 @@ const DetailsScreen = ({route, navigation})=>{
                     <View style={{margin:10}}>
                         <Text style={{color:"#fff"}}>StoryLine</Text>
                         <Text style={{color:AppStyles.colors.lightGreyColor, top:5}}>
-                            During the Northern Wei Dynasty, Mulan joined the army for his father and returned with honor. Ten years later, Rouran broke the border again, and Mulan resolutely returned to the battlefield. 
+                            {overview} 
                         </Text>
                         <Text style={{color:"#fff", top:10}}>Trailler</Text>
                         <Image borderRadius={10} source={require('../../../assets/mln.png')} style={{width:"100%", height:200, top:20}}/>

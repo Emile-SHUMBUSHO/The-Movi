@@ -4,7 +4,7 @@ import { AntDesign, Feather, Fontisto } from '@expo/vector-icons';
 import AppStyles from '../../styles/styles';
 import { ScrollView } from 'react-native-gesture-handler';
 
-const ProfileScreen = ()=>{
+const ProfileScreen = (navigator)=>{
     return(
         <SafeAreaView style={{backgroundColor:AppStyles.colors.topBottomColor}}>
             <ScrollView
@@ -60,7 +60,7 @@ const ProfileScreen = ()=>{
                         </TouchableOpacity>
 
                         <View style={[styles.textField, {justifyContent:"center"}]}>
-                        <TouchableOpacity style={{flexDirection:"row"}}>
+                        <TouchableOpacity style={{flexDirection:"row"}} onPress={()=>{navigator.navigation.navigate('signIn')}}>
                             <Text style={{color:"#fff"}}>Log Out</Text>
                         </TouchableOpacity>
                         </View>

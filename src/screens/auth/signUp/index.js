@@ -1,11 +1,26 @@
 
 import {View, Image, StyleSheet,Text, TouchableOpacity} from 'react-native';
+import {useState, useEffect} from 'react';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import AppStyles from '../../../styles/styles';
 import { AntDesign, Zocial, Feather, Fontisto} from '@expo/vector-icons';
 import { TextInput } from 'react-native-gesture-handler';
 
+import { auth } from '../../../firebase';
+
 const SignUpScreen = (navigator) =>{
+    const [email, setEmail] = useState('')
+    const [password, setPassword] = useState('')
+
+    const handleSignUp = ()=>{
+        auth
+        .createUserWithEmailAndPassword(email,password)
+        .then(userCredentials =>{
+            const user = userCredentials.user;
+            console.log(user.email)
+            alert('Signed Up')
+        }).then(()=>{navigator.navigation.navigate("signIn")}).catch(error=>alert(error.message))
+    }
     return(
         <SafeAreaView style={styles.container}>
             
@@ -30,6 +45,8 @@ const SignUpScreen = (navigator) =>{
                     <TextInput
                         placeholder='Email Address'
                         placeholderTextColor={AppStyles.colors.btnColor}
+                        value={email}
+                        onChangeText={text => setEmail(text)}
                     />
                     <Zocial name="email" size={19} color={AppStyles.colors.btnColor} />
                 </View>
@@ -39,20 +56,23 @@ const SignUpScreen = (navigator) =>{
                         placeholder='Password'
                         placeholderTextColor={AppStyles.colors.btnColor}
                         secureTextEntry={true}
+                        value={password}
+                        onChangeText={text => setPassword(text)}
                     />
                     <Feather name="lock" size={19} color={AppStyles.colors.btnColor} />
                 </View>
 
-                <View style={[styles.textField, {top:30}]}>
+                {/* <View style={[styles.textField, {top:30}]}>
                     <TextInput 
                         placeholder='Confirm Password'
                         placeholderTextColor={AppStyles.colors.btnColor}
                         secureTextEntry={true}
                     />
                     <Feather name="lock" size={19} color={AppStyles.colors.btnColor} />
-                </View>
+                </View> */}
 
-                <TouchableOpacity style={[styles.signInBtn, {top:50}]} onPress={() => navigator.navigation.navigate("signIn")}>
+                {/* <TouchableOpacity style={[styles.signInBtn, {top:50}]} onPress={() => navigator.navigation.navigate("signIn")}> */}
+                <TouchableOpacity style={[styles.signInBtn, {top:50}]} onPress={handleSignUp}>
                     <Text>Sign Up</Text>
                 </TouchableOpacity>
 
