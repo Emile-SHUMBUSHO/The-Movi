@@ -11,11 +11,12 @@ const Stack = createStackNavigator();
 function AppNavigator (){
     return(
         <Stack.Navigator screenOptions={{headerShown:false}}>
+            <Stack.Screen name="main" component={MainNavigator}/>
             <Stack.Screen name='Onboarding' component={OnboardingScreen}/>
             <Stack.Screen name="welcome" component={GetStartScreen}/>
             <Stack.Screen name="signIn" component={SignInScreen}/>
             <Stack.Screen name="signUp" component={SignUpScreen}/>
-            <Stack.Screen name="main" component={MainNavigator}/>
+            
             <Stack.Screen name='details' component={DetailsScreen}/>
         </Stack.Navigator>
     )

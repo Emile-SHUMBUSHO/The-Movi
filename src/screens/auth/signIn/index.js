@@ -1,26 +1,33 @@
 
-import {View,StyleSheet,Text, TouchableOpacity} from 'react-native';
+import {View,StyleSheet,Text, TouchableOpacity, ActivityIndicator} from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import AppStyles from '../../../styles/styles';
 import { AntDesign, Zocial, Feather, MaterialCommunityIcons} from '@expo/vector-icons';
 import { TextInput } from 'react-native-gesture-handler';
-import { useState, useEffect } from 'react';
+import { useState} from 'react';
 
 import { auth } from '../../../firebase';
 
 
 const SignInScreen = (navigator) =>{
 
+        const [isLoading, setIsLoading] = useState(false)
         const [email, setEmail] = useState('')
         const [password, setPassword] = useState('')
     
         const handleSignIn = ()=>{
+            setIsLoading(true)
             auth
             .signInWithEmailAndPassword(email,password)
             .then(userCredentials =>{
                 const user = userCredentials.user;
                 console.log(user.email)
-            }).then(()=>{navigator.navigation.navigate("main")}).catch(error=>alert("Email or Password Incorrect"))
+            }).then(()=>{
+                navigator.navigation.navigate("main")
+            }).catch((error)=>{
+                setIsLoading(false)
+                alert("Email or Password Incorrect")
+            })
         }
 
 
@@ -31,7 +38,9 @@ const SignInScreen = (navigator) =>{
                 <Text style={{color:"white", fontWeight:"bold", fontSize:16,}}>SignIn</Text>
             </TouchableOpacity>
             <View style={styles.content}>
-                
+                    {
+                        isLoading && <ActivityIndicator size="small" color="green"/>
+                    }
                     <Text style={{color:AppStyles.colors.lightGreyColor}}>
                         Emil Address
                     </Text>

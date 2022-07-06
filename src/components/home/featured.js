@@ -97,7 +97,7 @@ const FeaturedMovie = (props)=>{
 
 
                 {
-                    is_loading && <ActivityIndicator siz="small" color="red" title="Loading..."/>
+                    is_loading && <ActivityIndicator size="small" color="red"/>
                 }
                 
                 <ScrollView 
