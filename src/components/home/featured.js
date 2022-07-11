@@ -137,6 +137,7 @@ const FeaturedMovie = (props)=>{
                                 <TopRatedMovies
                                     title={movie.title}
                                     image={movie.backdrop_path}
+                                    navigation={()=>{props.navigation.navigate("details", movie)}}
                                 />
                             )
                         })
@@ -156,6 +157,7 @@ const FeaturedMovie = (props)=>{
                                     <PopularMovies
                                     title = {movie.title}
                                     image = {movie.backdrop_path}
+                                    navigation={()=>{props.navigation.navigate("details", movie)}}
                                 />
                                 )
                             })

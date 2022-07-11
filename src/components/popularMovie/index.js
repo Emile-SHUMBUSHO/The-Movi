@@ -5,9 +5,8 @@ const PopularMovies = (props)=>{
     const {image, title} = props
     const key = image;
     return(
-        <TouchableOpacity onPress={()=>{
-            alert(title)
-        }}>
+        <TouchableOpacity onPress={ props.navigation}>
+            
             <View style={styles.imgContainerInside}>
                 
                 <ImageBackground source={{uri:`https://image.tmdb.org/t/p/w500/${key}`}} borderRadius={10} resizeMode="cover" style={[styles.imgbckg]}>

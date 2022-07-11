@@ -45,6 +45,7 @@ const SignUpScreen = (navigator) =>{
                     <TextInput
                         placeholder='Email Address'
                         placeholderTextColor={AppStyles.colors.btnColor}
+                        style={{color:AppStyles.colors.btnColor}}
                         value={email}
                         onChangeText={text => setEmail(text)}
                     />
@@ -56,6 +57,7 @@ const SignUpScreen = (navigator) =>{
                         placeholder='Password'
                         placeholderTextColor={AppStyles.colors.btnColor}
                         secureTextEntry={true}
+                        style={{color:AppStyles.colors.btnColor}}
                         value={password}
                         onChangeText={text => setPassword(text)}
                     />

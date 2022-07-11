@@ -1,11 +1,11 @@
-import {SafeAreaView} from 'react-native';
+import { View, Image, Text,TouchableOpacity} from 'react-native';
 import { ScrollView } from 'react-native-gesture-handler';
-import SeriesComponent from '../series';
 import {useState, useEffect} from 'react';
-
+import { FlatGrid } from 'react-native-super-grid';
+import { SafeAreaView } from 'react-native-safe-area-context';
 import axios from 'axios';
 
-const Series = ()=>{
+const Series = (navigator)=>{
     const [popFilms, SetPopFilms] = useState([]);
     useEffect(()=>{
         fetchFilms();
@@ -14,7 +14,7 @@ const Series = ()=>{
         try{
             const {data} = await axios({
                 method: 'get',
-                url:'https://api.themoviedb.org/3/tv/popular?api_key=835f090de1e629571963fd0ec5d0a082',
+                url:'https://api.themoviedb.org/3/tv/airing_today?api_key=835f090de1e629571963fd0ec5d0a082',
             });
 
             if(data){
@@ -27,21 +27,24 @@ const Series = ()=>{
     };
     return(
         <SafeAreaView>
-            <ScrollView
-                showsVerticalScrollIndicator={false}
-            >
                 {
-                    popFilms.map((film, index)=>{
-                        return(
-                            <SeriesComponent
-                                key={film.id}
-                                img={film.backdrop_path}
-                            />
-                        )
-                        
-                    })
+                    popFilms? (
+                        <FlatGrid
+                            itemDimension={90}
+                            data={popFilms}
+                            // spacing={0}
+                            renderItem={({ item}) => (
+                                <TouchableOpacity onPress={()=>{navigator.navigation.navigate("details",item)}}>
+                                    <View>
+                                        <Image source={{uri:`https://image.tmdb.org/t/p/w500/${item.poster_path}`}} style={{width:110, height:150}}/>
+                                    </View>
+                                </TouchableOpacity>
+                            )}
+                        />
+                    ):(
+                        <Text>No Series</Text>
+                    )
                 }
-            </ScrollView>
         </SafeAreaView>
     )
 }

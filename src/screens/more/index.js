@@ -3,8 +3,12 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 import { AntDesign, Feather, Fontisto } from '@expo/vector-icons';
 import AppStyles from '../../styles/styles';
 import { ScrollView } from 'react-native-gesture-handler';
+import { auth } from '../../firebase';
 
 const ProfileScreen = (navigator)=>{
+    const handleSignOut = ()=>{
+        auth.signOut().then(()=>{navigator.navigation.navigate('signIn')}).catch(error => alert(error));
+    }
     return(
         <SafeAreaView style={{backgroundColor:AppStyles.colors.topBottomColor}}>
             <ScrollView
@@ -16,8 +20,8 @@ const ProfileScreen = (navigator)=>{
                 
                 <View style={{flexDirection:"column", alignItems:"center", justifyContent:"center", margin:10, padding:10}}>
                     <Image borderRadius={10} source={require('../../../assets/mln.png')} style={{width:100, height:100, margin:5}}/>
-                    <Text style={{margin:10, color:"#fff"}}>Emile SHUMBUSHO</Text>
-                    <Text style={{color:AppStyles.colors.lightGreyColor}}>shumbushoemilef@gmail.com</Text>
+                    {/* <Text style={{margin:10, color:"#fff"}}>Emile SHUMBUSHO</Text> */}
+                    <Text style={{color:AppStyles.colors.lightGreyColor}}>{auth.currentUser?.email}</Text>
                     <TouchableOpacity style={{margin:10}}>
                         <Text style={{color:AppStyles.colors.btnColor}}>Edit Profile</Text>
                     </TouchableOpacity>
@@ -60,7 +64,7 @@ const ProfileScreen = (navigator)=>{
                         </TouchableOpacity>
 
                         <View style={[styles.textField, {justifyContent:"center"}]}>
-                        <TouchableOpacity style={{flexDirection:"row"}} onPress={()=>{navigator.navigation.navigate('signIn')}}>
+                        <TouchableOpacity style={{flexDirection:"row"}} onPress={handleSignOut}>
                             <Text style={{color:"#fff"}}>Log Out</Text>
                         </TouchableOpacity>
                         </View>

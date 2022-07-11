@@ -1,62 +1,58 @@
-import {SafeAreaView,ScrollView, View, Image, StyleSheet, Text} from 'react-native';
-import {useEffect, useState} from 'react'
-import FilmComponent from '../films';
+import { View, Image, TouchableOpacity, Text } from "react-native";
+import { SafeAreaView } from "react-native-safe-area-context";
+import { useEffect, useState } from "react";
+import { FlatGrid } from "react-native-super-grid";
+import FilmComponent from "../films";
 
-import { FlatGrid } from 'react-native-super-grid';
+import axios from "axios";
 
-import axios from 'axios';
+const Films = (navigator) => {
+  const [popFilms, SetPopFilms] = useState([]);
+  useEffect(() => {
+    fetchFilms();
+  }, []);
+  const fetchFilms = async () => {
+    try {
+      const { data } = await axios({
+        method: "get",
+        url: "https://api.themoviedb.org/3/tv/popular?api_key=835f090de1e629571963fd0ec5d0a082",
+      });
 
-const Films = ()=>{
-    const [popFilms, SetPopFilms] = useState([]);
-    useEffect(()=>{
-        fetchFilms();
-    }, [])
-    const fetchFilms = async()=>{
-        try{
-            const {data} = await axios({
-                method: 'get',
-                url:'https://api.themoviedb.org/3/tv/popular?api_key=835f090de1e629571963fd0ec5d0a082',
-            });
-
-            if(data){
-                const movies = data.results;
-                SetPopFilms(movies)
-            }
-        }catch(err){
-            console.log(err.message)
-        }
-    };
-    return(
-        <SafeAreaView>
-            <ScrollView
-                showsVerticalScrollIndicator={false}
-            >
-                {
-                    popFilms.map((film, index)=>{
-                        return(
-                            <FilmComponent
-                                key={film.id}
-                                img={film.backdrop_path}
-                            />
-                        )
-                        
-                    })
-                }
-
-                <FilmComponent/>
-
-                {/* <View>
-                    <Image source={require('../../../assets/shang.jpg')} style={{width:110, height:150, margin:4}}/>
-                </View> */}
-            </ScrollView>
-        </SafeAreaView>
-    )
-}
+      if (data) {
+        const movies = data.results;
+        SetPopFilms(movies);
+      }
+    } catch (err) {
+      console.log(err.message);
+    }
+  };
+  return (
+    <SafeAreaView>
+      {popFilms ? (
+        <FlatGrid
+          itemDimension={90}
+          data={popFilms}
+          renderItem={({ item }) => (
+            <TouchableOpacity onPress={()=>{navigator.navigation.navigate("details", item)}}>
+              <View>
+                <Image
+                  source={{
+                    uri: `https://image.tmdb.org/t/p/w500/${item.poster_path}`,
+                  }}
+                  style={{ width: 110, height: 150 }}
+                />
+              </View>
+            </TouchableOpacity>
+          )}
+        />
+      ) : (
+        <Text>No Movies</Text>
+      )}
+    </SafeAreaView>
+  );
+};
 
 export default Films;
-
-
-
 
 // import {SafeAreaView,ScrollView} from 'react-native';
 // import {useEffect, useState} from 'react'
@@ -66,11 +62,8 @@ export default Films;
 
 // import axios from 'axios';
 
-
-
 // import { StyleSheet, View, Text } from 'react-native';
 // import { FlatGrid } from 'react-native-super-grid';
-
 
 // const Films = ()=>{
 
@@ -97,7 +90,6 @@ export default Films;
 //         { name: 'ASBESTOS', code: '#7f8c8d' },
 //       ]);
 
-
 //       const [nowPlayingMovie, setNowPlayingMovie] = useState([]);
 
 //       useEffect(()=>{
@@ -123,9 +115,6 @@ export default Films;
 //             console.log(err.message)
 //         }
 // };
-
-
-
 
 //     // const [popFilms, SetPopFilms] = useState([
 //     // ]);
@@ -154,12 +143,12 @@ export default Films;
 
 //     return(
 
-//         <ScrollView 
+//         <ScrollView
 //                     horizontal
 //                     showsHorizontalScrollIndicator={false}
 //                     style={{bottom:10}}
 //                 >
-                     
+
 //                     {
 //                         nowPlayingMovie.map((movie,index)=>{
 //                             return(
@@ -192,8 +181,6 @@ export default Films;
 // }
 
 // export default Films;
-
-
 
 // const styles = StyleSheet.create({
 //     gridView: {

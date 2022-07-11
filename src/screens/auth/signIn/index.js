@@ -49,7 +49,7 @@ const SignInScreen = (navigator) =>{
                         <TextInput
                             placeholder='e.g emile@gmail.com'
                             placeholderTextColor={AppStyles.colors.lightGreyColor}
-                            style={{left:10}}
+                            style={{left:10, color:AppStyles.colors.btnColor}}
                             value={email}
                             onChangeText={text=> setEmail(text)}
                             />
@@ -65,7 +65,7 @@ const SignInScreen = (navigator) =>{
                             placeholder='Your password'
                             placeholderTextColor={AppStyles.colors.lightGreyColor}
                             secureTextEntry={true}
-                            style={{left:10}}
+                            style={{left:10, color:AppStyles.colors.btnColor}}
                             value={password}
                             onChangeText={text => setPassword(text)}
                             />

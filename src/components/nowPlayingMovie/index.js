@@ -1,8 +1,8 @@
 import { View,TouchableOpacity, StyleSheet, ImageBackground, Text} from "react-native";
 import AppStyles from "../../styles/styles";
 
-const NowPlayingMovies = (props,navigation)=>{
-    const {image, title} = props
+const NowPlayingMovies = (props)=>{
+    const {image} = props
     const key = image;
     return(
         <TouchableOpacity onPress={ props.navigation}>
