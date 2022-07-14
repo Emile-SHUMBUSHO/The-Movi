@@ -19,11 +19,11 @@ const ProfileScreen = (navigator)=>{
                 </View>
                 
                 <View style={{flexDirection:"column", alignItems:"center", justifyContent:"center", margin:10, padding:10}}>
-                    <Image borderRadius={10} source={require('../../../assets/mln.png')} style={{width:100, height:100, margin:5}}/>
+                    <Image borderRadius={10} source={require('../../../assets/man.png')} style={{width:100, height:100, margin:5}}/>
                     {/* <Text style={{margin:10, color:"#fff"}}>Emile SHUMBUSHO</Text> */}
                     <Text style={{color:AppStyles.colors.lightGreyColor}}>{auth.currentUser?.email}</Text>
-                    <TouchableOpacity style={{margin:10}} onPress={()=>{navigator.navigation.navigate('profile')}}>
-                        <Text style={{color:AppStyles.colors.btnColor}}>Edit Profile</Text>
+                    <TouchableOpacity style={{margin:10}}>
+                        <Text style={{color:AppStyles.colors.btnColor}}>Emile-SHUMBUSHO</Text>
                     </TouchableOpacity>
                 </View>
             
@@ -34,10 +34,10 @@ const ProfileScreen = (navigator)=>{
                             <Text style={{color:"#fff"}}>Inbox</Text>
                         </View>
                         
-                        <View style={{flexDirection:"row", justifyContent:"flex-start", alignItems:"center"}}>
+                        <TouchableOpacity style={{flexDirection:"row", justifyContent:"flex-start", alignItems:"center"}} onPress={()=>{navigator.navigation.navigate('profile')}}>
                             <AntDesign name="user" size={24} color="white" style={{padding:10}}/>
                             <Text style={{color:"#fff"}}>Account Settings</Text>
-                        </View>
+                        </TouchableOpacity>
 
                         <View style={{flexDirection:"row", justifyContent:"flex-start", alignItems:"center"}}>
                             <Fontisto name="world-o" size={24} color="white" style={{padding:10}}/>

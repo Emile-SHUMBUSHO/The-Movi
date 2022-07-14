@@ -27,6 +27,7 @@ const DetailsScreen = ({route, navigation})=>{
             });
             if(data){
                 setIsLoading(false)
+                data.slice(0, 6)
                 setTrailler(data.results);
             }
         }catch(err){
