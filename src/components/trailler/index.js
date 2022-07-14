@@ -8,7 +8,6 @@ export default function Trailer(props) {
       source={{
         uri: `https://www.youtube.com/embed/${movie}?playlist=${movie}&loop=1&autoplay=1`,
       }}
-      style={{ marginTop:30, borderRadius:10}}
     />
   );
 }

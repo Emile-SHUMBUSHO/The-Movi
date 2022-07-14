@@ -2,7 +2,7 @@ import { View,TouchableOpacity, StyleSheet, ImageBackground, Text} from "react-n
 import AppStyles from "../../styles/styles";
 
 const PopularMovies = (props)=>{
-    const {image, title} = props
+    const {image, vote} = props
     const key = image;
     return(
         <TouchableOpacity onPress={ props.navigation}>
@@ -11,7 +11,7 @@ const PopularMovies = (props)=>{
                 
                 <ImageBackground source={{uri:`https://image.tmdb.org/t/p/w500/${key}`}} borderRadius={10} resizeMode="cover" style={[styles.imgbckg]}>
                     <View style={{backgroundColor:AppStyles.colors.btnColor, height:20,width:30, alignItems:"center", justifyContent:"center", borderRadius:5}}>
-                        <Text>3.4</Text>
+                        <Text>{vote}</Text>
                     </View>
                 </ImageBackground>
             </View>

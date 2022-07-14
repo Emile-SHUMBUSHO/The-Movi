@@ -10,7 +10,7 @@ import { useState, useEffect } from 'react';
 
 const SearchingScren = (navigator)=>{
 
-    const [keyword, setKeyword] = useState();
+    const [keyword, setKeyword] = useState("");
     const [getSearchMovie, setSearchMovie] = useState();
     const key = `835f090de1e629571963fd0ec5d0a082`;
     useEffect(() => {
@@ -40,6 +40,7 @@ const SearchingScren = (navigator)=>{
                 <ScrollView>
                     <View style={{flexDirection:"row", alignItems:"center",  justifyContent:"space-between", margin:10, backgroundColor:AppStyles.colors.serchBarColor, height:40, borderRadius:5}}>
                         <TextInput
+                            // label='Search For Your Favorite Movies'
                             placeholder='Search For Your Favorite Movies'
                             placeholderTextColor={AppStyles.colors.btnColor}
                             autoCapitalize={"none"}

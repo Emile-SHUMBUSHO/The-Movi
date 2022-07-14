@@ -15,22 +15,18 @@ const ProfileScreen = (navigator)=>{
                 showsVerticalScrollIndicator={false}
             >
                 <View style={{padding:10}}>
-                    <Text style={{color:"#fff", fontSize:18}}>More</Text>
+                    <Text style={{color:"#fff", fontSize:18}}>Profile</Text>
                 </View>
                 
                 <View style={{flexDirection:"column", alignItems:"center", justifyContent:"center", margin:10, padding:10}}>
                     <Image borderRadius={10} source={require('../../../assets/mln.png')} style={{width:100, height:100, margin:5}}/>
                     {/* <Text style={{margin:10, color:"#fff"}}>Emile SHUMBUSHO</Text> */}
                     <Text style={{color:AppStyles.colors.lightGreyColor}}>{auth.currentUser?.email}</Text>
-                    <TouchableOpacity style={{margin:10}}>
+                    <TouchableOpacity style={{margin:10}} onPress={()=>{navigator.navigation.navigate('profile')}}>
                         <Text style={{color:AppStyles.colors.btnColor}}>Edit Profile</Text>
                     </TouchableOpacity>
                 </View>
-                
-                
-
-                
-
+            
                 <View style={{backgroundColor:AppStyles.colors.containerColor, borderTopEndRadius:10, borderTopStartRadius:10, height:500}}>
                     <View style={{margin:10}}>
                         <View style={{flexDirection:"row", justifyContent:"flex-start", alignItems:"center"}}>

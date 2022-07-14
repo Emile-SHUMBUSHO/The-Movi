@@ -21,6 +21,7 @@ const SignUpScreen = (navigator) =>{
             alert('Signed Up')
         }).then(()=>{navigator.navigation.navigate("signIn")}).catch(error=>alert(error.message))
     }
+    
     return(
         <SafeAreaView style={styles.container}>
             

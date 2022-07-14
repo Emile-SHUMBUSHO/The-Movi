@@ -28,7 +28,6 @@ const FeaturedMovie = (props)=>{
                 });
 
                 if(data){
-                    console.log(data)
                     setIs_loading(false)
                     const movies = data.results;
                     setNowPlayingMovie(movies)
@@ -113,6 +112,7 @@ const FeaturedMovie = (props)=>{
                                 key={movie.id}
                                 title = {movie.title}
                                 image = {movie.backdrop_path}
+                                vote = {movie.vote_average}
                                 navigation={()=>{props.navigation.navigate("details",movie)}}
                               />
                             )
@@ -135,8 +135,10 @@ const FeaturedMovie = (props)=>{
                         topRatedMovie.map((movie, index)=>{
                             return(
                                 <TopRatedMovies
+                                    key={movie.id}
                                     title={movie.title}
                                     image={movie.backdrop_path}
+                                    vote={movie.vote_average}
                                     navigation={()=>{props.navigation.navigate("details", movie)}}
                                 />
                             )
@@ -155,8 +157,10 @@ const FeaturedMovie = (props)=>{
                             popMovie.map((movie, index)=>{
                                 return(
                                     <PopularMovies
+                                    key={index}
                                     title = {movie.title}
-                                    image = {movie.backdrop_path}
+                                    image = {movie.backdrop_path}   
+                                    vote = {movie.vote_average}
                                     navigation={()=>{props.navigation.navigate("details", movie)}}
                                 />
                                 )
